@@ -1,0 +1,56 @@
+﻿
+@model IEnumerable<Produktverwaltung.Models.Produkt>
+
+<div class="container p-3">
+    <div class="row pt-5">
+        <div class="col-6">
+            <h2 class="text-primary">Produkt-List</h2>
+        </div>
+        <div class="col-6">
+            <a  asp-controller="Produkt" asp-action="Create" class=btn-primary>Neu Produkt erstellen</a>
+        </div>
+    </div>
+    <br />
+    @if(Model.Count() > 0)
+    {
+        <table class=" table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    
+                    
+                    <th>Name</th>
+                    <th>Preis</th>
+                    <th>Menge</th>
+                    <th>Changes</th>
+                    
+      
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var produkt in Model)
+                {
+                   <tr>
+                
+                        
+                        <td width="35%">@produkt.Name</td>
+                        <td width="35%">@produkt.Preis</td>
+                        <td width="35%">@produkt.Menge</td>
+                        
+                        
+                        <td width="80%">
+                          <div class="col-7 text-right">
+                            <a  asp-controller="Produkt" asp-action="Update" asp-route-Id="@produkt.Id" class="btn-primary mx-1">Update</a>
+                            <a  asp-controller="Produkt" asp-action="DeletePost" asp-route-Id="@produkt.Id" class="btn-danger mx-1">Delete</a>
+                          </div>
+                   </tr> 
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Kein Produkt wurde erstellt</p>
+    }
+</div>
+
+

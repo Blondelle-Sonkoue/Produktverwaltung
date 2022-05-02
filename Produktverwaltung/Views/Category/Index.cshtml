@@ -1,0 +1,47 @@
+﻿
+@model IEnumerable<Produktverwaltung.Models.Category>
+
+<div class="container p-3">
+    <div class="row pt-3">
+        <div class="col-6">
+            <h2 class="text-primary">Category-List</h2>
+        </div>
+        <div class="col-6">
+             <a  asp-controller="Category" asp-action="Create" class=btn-primary>Neue Category erstellen</a>
+        </div>
+    </div>
+    <br />
+    @if(Model.Count() > 0)
+    {
+        <table class=" table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Bescreibung</th>
+                    <th>Changes</th>
+      
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in Model)
+                {
+                   <tr>
+          
+                        <td width="35%">@category.Name</td>
+                        <td width="35%">@category.Bescreibung</td>
+                        <td width="40%">
+                          <div class="W-80btn btn-group" role="group">
+                            <a  asp-controller="Category" asp-action="Update" asp-route-Id="@category.CategoryId" class="btn-primary mx-1">Update</a>
+                            <a  asp-controller="Category" asp-action="DeletePost" asp-route-Id="@category.CategoryId" class="btn-danger mx-1">Delete</a>
+                          </div>
+                   </tr> 
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Keine Category wurde erstellt</p>
+    }
+</div>
+
